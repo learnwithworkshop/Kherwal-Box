@@ -13,7 +13,8 @@ def init_db(db: Session = None) -> None:
     Import all models to ensure they are registered with SQLAlchemy.
     """
     # Import all models to register them with SQLAlchemy
-    from app.models import user, video, episode, subscription  # noqa: F401
+    from app.models import user, video, episode, subscription, category  # noqa: F401
+    from app.services.category_service import CategoryService
 
     logger.info("Creating database tables...")
     
@@ -21,6 +22,14 @@ def init_db(db: Session = None) -> None:
         # Create all tables
         Base.metadata.create_all(bind=engine)
         logger.info("✓ Database tables created successfully")
+        
+        # Seed default categories
+        session = SessionLocal()
+        try:
+            CategoryService.seed_categories(session)
+            logger.info("✓ Default categories seeded successfully")
+        finally:
+            session.close()
     except Exception as e:
         logger.error(f"✗ Error creating database tables: {str(e)}")
         raise
@@ -32,7 +41,7 @@ def drop_all_tables() -> None:
     WARNING: This will delete all data!
     Only use in development.
     """
-    from app.models import user, video, episode, subscription  # noqa: F401
+    from app.models import user, video, episode, subscription, category  # noqa: F401
     
     logger.warning("Dropping all database tables...")
     Base.metadata.drop_all(bind=engine)

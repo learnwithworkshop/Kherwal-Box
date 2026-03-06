@@ -15,6 +15,7 @@ class Video(Base):
     thumbnail_path = Column(String(512), nullable=True)
     duration = Column(Integer, nullable=True)  # in seconds
     owner_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    category_id = Column(Integer, ForeignKey("categories.id"), nullable=True)
     is_published = Column(Boolean, default=False, nullable=False)
     view_count = Column(Integer, default=0, nullable=False)
     
@@ -24,7 +25,8 @@ class Video(Base):
 
     # Relationships
     owner = relationship("User", back_populates="videos")
+    category = relationship("Category", back_populates="videos")
     episodes = relationship("Episode", back_populates="video", cascade="all, delete-orphan")
 
     def __repr__(self):
-        return f"<Video(id={self.id}, title={self.title}, owner_id={self.owner_id})>"
+        return f"<Video(id={self.id}, title={self.title}, owner_id={self.owner_id}, category_id={self.category_id})>"

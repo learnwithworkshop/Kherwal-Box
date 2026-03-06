@@ -1,0 +1,82 @@
+/* Ol Chiki Script Font Support for Santhali */
+
+/* Google Fonts - Noto Sans Ol Chiki */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Ol+Chiki:wght@400;500;600;700&display=swap');
+
+/* Fallback fonts for Santhali text */
+.santhali-text,
+[lang="sat"] {
+  font-family: 'Noto Sans Ol Chiki', 'Noto Sans', 'DejaVu Sans', system-ui, sans-serif !important;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+/* Ensure proper rendering of Ol Chiki characters */
+.ol-chiki-script {
+  display: inline-block;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+/* Language-specific styling */
+html[lang="sat"] {
+  font-family: 'Noto Sans Ol Chiki', 'Noto Sans', 'DejaVu Sans', system-ui, sans-serif;
+  direction: ltr;
+}
+
+/* Typography improvements for Santhali */
+html[lang="sat"] h1,
+html[lang="sat"] h2,
+html[lang="sat"] h3,
+html[lang="sat"] h4,
+html[lang="sat"] h5,
+html[lang="sat"] h6 {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+html[lang="sat"] p,
+html[lang="sat"] body {
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+}
+
+/* Category icons styling */
+.category-icon {
+  font-size: 2.5rem;
+  display: inline-block;
+}
+
+/* Accessibility improvements */
+.santhali-text {
+  min-height: 1.5em;
+}
+
+/* Print styles for Santhali text */
+@media print {
+  .santhali-text,
+  [lang="sat"] {
+    font-weight: 500;
+    color: #000;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .santhali-text,
+  [lang="sat"] {
+    color: #e5e7eb;
+  }
+}
+
+/* Mobile optimization */
+@media (max-width: 640px) {
+  .santhali-text {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  html[lang="sat"] {
+    font-size: 16px;
+  }
+}
